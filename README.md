@@ -3,7 +3,7 @@
 
 Aplication Demo: https://camp-hunt.herokuapp.com/
 
-## Contributors 🤝
+## Contributors 
  - [*Aly Assem*](https://github.com/AlyAssem)  
  - [*Maia Dandachi*](https://github.com/MaiaDandachi)
  
