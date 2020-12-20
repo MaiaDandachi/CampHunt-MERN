@@ -1,0 +1,16 @@
+.card {
+  transition: transform 0.5s;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card-body > a {
+  text-decoration: none;
+}
+
+.card-title > strong {
+  color: dimgray;
+  font-size: 25px;
+}

@@ -1,0 +1,54 @@
+.register-form {
+  width: 430px;
+  height: 500px;
+  padding: 60px 35px 35px 35px;
+  border-radius: 40px;
+  background: #ecf0f3;
+  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
+  margin: 0rem auto;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.register-title {
+  text-align: center;
+  font-size: 28px;
+  letter-spacing: 0.3px;
+}
+
+.register-fields {
+  width: 100%;
+  padding: 20px 5px 5px 5px;
+}
+
+.register-fields > input {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 18px;
+  color: #555;
+  padding: 15px 10px 20px 5px;
+}
+
+.register-email,
+.register-name,
+.register-password {
+  margin-bottom: 30px;
+  border-radius: 25px;
+  box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #ffffff;
+}
+.register-button {
+  cursor: pointer;
+  width: 50%;
+  text-align: center;
+}
+
+.register-link {
+  padding-top: 20px;
+  text-align: center;
+}
+.register-link a {
+  text-decoration: none;
+  color: #aaa;
+  font-size: 15px;
+}
