@@ -65,7 +65,7 @@ const FilterBox = ({ history }) => {
           />
         </Form.Group>
 
-        <Form.Group as={Col}>
+        <Form.Group as={Col} sm={12} md={6}>
           <Form.Label>Min. Price</Form.Label>
 
           <Form.Control
