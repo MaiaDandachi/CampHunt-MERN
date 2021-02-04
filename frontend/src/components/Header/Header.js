@@ -17,8 +17,8 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
-        <Container className='header-container'>
+      <Navbar bg='dark' variant='dark' expand='sm' collapseOnSelect>
+        <Container>
           <LinkContainer to='/'>
             <Navbar.Brand>CampHunt</Navbar.Brand>
           </LinkContainer>
@@ -44,11 +44,11 @@ const Header = () => {
                 <Nav.Link>Leaders</Nav.Link>
               </LinkContainer>
             </Nav>
-          </Navbar.Collapse>
 
-          <LinkContainer to='/new-campground'>
-            <Button variant='info'>Create Camp</Button>
-          </LinkContainer>
+            <LinkContainer to='/new-campground'>
+              <Button variant='info'>Create Camp</Button>
+            </LinkContainer>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </header>

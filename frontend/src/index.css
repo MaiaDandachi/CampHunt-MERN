@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Lobster&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Lobster&display=swap');
 
 main {
   min-height: 70vh;
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
 }
