@@ -1,16 +1,16 @@
-.card {
+.camp-card {
   transition: transform 0.5s;
 }
 
-.card:hover {
+.camp-card:hover {
   transform: scale(1.1);
 }
 
-.card-body > a {
+.camp-card__link:hover {
   text-decoration: none;
 }
 
-.card-title > strong {
+.camp-card__title {
   color: dimgray;
   font-size: 25px;
 }

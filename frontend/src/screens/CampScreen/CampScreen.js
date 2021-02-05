@@ -12,6 +12,7 @@ import {
   deleteCamp,
 } from '../../actions/campActions';
 import { CAMP_CREATE_REVIEW_RESET } from '../../constants/campConstants';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const CampScreen = ({ match, history }) => {
   const [rating, setRating] = useState(0);
@@ -81,17 +82,22 @@ const CampScreen = ({ match, history }) => {
             {/* Show edit and delete buttons only when the creator of the camp is logged in */}
             {userInfo && camp.user && userInfo._id === camp.user._id && (
               <div className='mb-2'>
-                <Link
-                  className='btn btn-info my-3 d-inline ml-0'
+                <LinkContainer
                   to={`/camp/${camp._id}/edit`}
+                  style={{
+                    borderRadius: '50px',
+                    padding: '9px 25px',
+                    border: 'none',
+                  }}
                 >
-                  Edit
-                </Link>
+                  <Button variant='info'>Edit</Button>
+                </LinkContainer>
+
                 <Button
                   variant='danger'
                   style={{
                     borderRadius: '50px',
-                    padding: '9px 20px',
+                    padding: '9px 25px',
                     border: 'none',
                     marginLeft: '10px',
                   }}
@@ -163,7 +169,7 @@ const CampScreen = ({ match, history }) => {
               className='pb-3'
               style={{ transition: 'none', transform: 'none' }}
             >
-              <Card.Title as='h3' className='pl-3'>
+              <Card.Title as='h3' className='pl-3 my-3'>
                 {camp.name}
               </Card.Title>
               <Card.Img
@@ -235,7 +241,18 @@ const CampScreen = ({ match, history }) => {
                           onChange={(e) => setComment(e.target.value)}
                         ></Form.Control>
                       </Form.Group>
-                      <Button type='submit' variant='info' className='ml-0'>
+                      <Button
+                        type='submit'
+                        variant='info'
+                        className='ml-0'
+                        style={{
+                          cursor: 'pointer',
+                          borderRadius: '50px',
+                          border: 'none',
+                          marginBottom: '2px',
+                          padding: '9px 25px',
+                        }}
+                      >
                         Add
                       </Button>
                     </Form>

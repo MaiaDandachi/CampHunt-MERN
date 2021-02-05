@@ -3,52 +3,61 @@
   padding: 60px 35px 35px 35px;
   border-radius: 40px;
   background: #ecf0f3;
-  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
   margin: 0rem auto;
   margin-top: 1rem;
   text-align: center;
 }
 
-.login-title {
+.login-form--shadowify {
+  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
+}
+
+.login-form__title {
   text-align: center;
   font-size: 28px;
   letter-spacing: 0.3px;
 }
 
-.login-fields {
+.login-form__fields {
   width: 100%;
   padding: 20px 5px 5px 5px;
 }
 
-.login-fields > input {
+.login-form__form-control {
   border: none;
   outline: none;
   background: none;
   font-size: 18px;
   color: #555;
   padding: 15px 10px 20px 5px;
+  margin-bottom: 30px;
+  border-radius: 50px;
 }
 
-.login-email,
-.login-password {
-  margin-bottom: 30px;
-  border-radius: 25px;
+.login-form__form-control--shadowify {
   box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #ffffff;
 }
-.login-button {
+
+.login-form__btn {
   cursor: pointer;
-  width: 50%;
   text-align: center;
+  width: 120px;
+  padding: 9px 25px;
+  border-radius: 50px;
 }
 
-.login-link {
+.login-screen__link-container {
   padding-top: 20px;
   text-align: center;
 }
-.login-link a {
-  text-decoration: none;
+
+.login-screen__link {
   color: #aaa;
   font-size: 15px;
+}
+.login-screen__link:hover {
+  text-decoration: none;
+  color: #aaa;
 }
 
 @media screen and (max-width: 991px) {

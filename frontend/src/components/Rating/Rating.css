@@ -1,7 +1,3 @@
-h3 {
-  padding: 1rem 0;
-}
-
-.rating > span {
+.rating__icon {
   margin: 0.1rem;
 }

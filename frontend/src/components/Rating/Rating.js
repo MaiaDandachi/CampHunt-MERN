@@ -6,7 +6,7 @@ import './Rating.css';
 const Rating = ({ value, text, color }) => {
   return (
     <div className='rating'>
-      <span>
+      <span className='rating__icon'>
         <i
           style={{ color: color }}
           className={
@@ -18,7 +18,7 @@ const Rating = ({ value, text, color }) => {
           }
         ></i>
       </span>
-      <span>
+      <span className='rating__icon'>
         <i
           style={{ color: color }}
           className={
@@ -30,7 +30,7 @@ const Rating = ({ value, text, color }) => {
           }
         ></i>
       </span>
-      <span>
+      <span className='rating__icon'>
         <i
           style={{ color: color }}
           className={
@@ -42,7 +42,7 @@ const Rating = ({ value, text, color }) => {
           }
         ></i>
       </span>
-      <span>
+      <span className='rating__icon'>
         <i
           style={{ color: color }}
           className={
@@ -54,7 +54,7 @@ const Rating = ({ value, text, color }) => {
           }
         ></i>
       </span>
-      <span>
+      <span className='rating__icon'>
         <i
           style={{ color }}
           className={
@@ -66,7 +66,7 @@ const Rating = ({ value, text, color }) => {
           }
         ></i>
       </span>
-      <span>{text && text}</span>
+      <span className='rating__icon'>{text && text}</span>
     </div>
   );
 };

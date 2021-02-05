@@ -42,7 +42,7 @@ const LeadersListScreen = () => {
 
             return (
               <Col key={leader._id} lg={6} className='mb-3'>
-                <div className='card-user h-100'>
+                <div className='leader-list__user-card user-card h-100'>
                   <Card
                     className='flex-row h-100 p-2'
                     style={{ transition: 'none', transform: 'none' }}
@@ -53,7 +53,7 @@ const LeadersListScreen = () => {
                       }
                       alt={leader.name}
                       fluid='true'
-                      className='roundedcircle'
+                      className='roundedcircle user-card__img'
                     />
 
                     <Card.Body>

@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import './ProfileScreen.css';
 import {
   getUserDetails,
   updateUserProfile,
@@ -74,7 +75,7 @@ const ProfileScreen = ({ history }) => {
       {error && <Message variant='danger'>{error}</Message>}
       {success && <Message variant='success'>Profile Updated</Message>}
       {loading && <Loader />}
-      <Form onSubmit={submitHandler}>
+      <Form onSubmit={submitHandler} className='profile-form'>
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -115,16 +116,12 @@ const ProfileScreen = ({ history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button
-          type='submit'
-          className='btn-info'
-          style={{ marginLeft: '40%', width: '20%' }}
-        >
+        <Button type='submit' variant='info' className='profile-form__btn'>
           Update
         </Button>
       </Form>
 
-      <div className='mt-4'>
+      <div className='mt-4 profile-delete'>
         <h5 className='border-bottom pb-2'>Delete Account</h5>
         <p>
           This will delete your account permanently and will delete all your
@@ -132,7 +129,7 @@ const ProfileScreen = ({ history }) => {
         </p>
         <Button
           variant='danger'
-          style={{ marginLeft: '40%', width: '20%', borderRadius: '50px' }}
+          className='profile-delete__btn'
           onClick={() => {
             deleteHandler(user._id);
           }}

@@ -54,9 +54,10 @@ const FilterBox = ({ history }) => {
   return (
     <Form className='filter-box' onSubmit={submitHandler}>
       <Form.Row>
-        <Form.Group as={Col}>
+        <Form.Group className='filter-box__form-group' as={Col} sm={12} md={6}>
           <Form.Label>What Camp?</Form.Label>
           <Form.Control
+            className='filter-box__form-control'
             type='text'
             name='campName'
             placeholder='Camp Name'
@@ -65,10 +66,11 @@ const FilterBox = ({ history }) => {
           />
         </Form.Group>
 
-        <Form.Group as={Col} sm={12} md={6}>
+        <Form.Group className='filter-box__form-group' as={Col}>
           <Form.Label>Min. Price</Form.Label>
 
           <Form.Control
+            className='filter-box__form-control'
             type='number'
             name='minPrice'
             min='1'
@@ -79,9 +81,10 @@ const FilterBox = ({ history }) => {
           />
         </Form.Group>
 
-        <Form.Group as={Col}>
+        <Form.Group className='filter-box__form-group' as={Col}>
           <Form.Label>Max. Price</Form.Label>
           <Form.Control
+            className='filter-box__form-control'
             type='number'
             name='maxPrice'
             min='1'
@@ -94,10 +97,10 @@ const FilterBox = ({ history }) => {
       </Form.Row>
 
       <Form.Row className='select-row'>
-        <Form.Group as={Col}>
+        <Form.Group className='filter-box__form-group' as={Col}>
           <Form.Label>Country</Form.Label>
           <CountryDropdown
-            className='form-control'
+            className='form-control filter-box__form-control'
             name='country'
             defaultOptionLabel='Country'
             value={country}
@@ -105,10 +108,10 @@ const FilterBox = ({ history }) => {
           />
         </Form.Group>
 
-        <Form.Group as={Col}>
+        <Form.Group className='filter-box__form-group' as={Col}>
           <Form.Label>City</Form.Label>
           <RegionDropdown
-            className='form-control'
+            className='form-control filter-box__form-control'
             name='city'
             disableWhenEmpty={true}
             country={country}
@@ -119,12 +122,7 @@ const FilterBox = ({ history }) => {
       </Form.Row>
       <Form.Row>
         <Col>
-          <Button
-            type='submit'
-            variant='info'
-            className='mt-3'
-            style={{ width: '40%' }}
-          >
+          <Button type='submit' variant='info' className='filter-box__btn mt-3'>
             Filter
           </Button>
         </Col>

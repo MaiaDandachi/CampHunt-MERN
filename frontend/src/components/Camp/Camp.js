@@ -7,15 +7,15 @@ import './Camp.css';
 
 const Camp = ({ camp }) => {
   return (
-    <Card className='my-3 rounded'>
+    <Card className='my-3 camp-card'>
       <Link to={`/camp/${camp._id}`}>
         <Card.Img src={camp.image} variant='top' />
       </Link>
 
       <Card.Body>
-        <Link to={`/camp/${camp._id}`}>
+        <Link className='camp-card__link' to={`/camp/${camp._id}`}>
           <Card.Title as='div'>
-            <strong>{camp.name}</strong>
+            <strong className='camp-card__title'>{camp.name}</strong>
           </Card.Title>
         </Link>
 

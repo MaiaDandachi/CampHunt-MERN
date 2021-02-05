@@ -31,12 +31,15 @@ const LoginScreen = ({ history }) => {
     <>
       {loading && <Loader />}
       {error && <Message variant='danger'>{error}</Message>}
-      <Form className='login-form' onSubmit={submitHandler}>
-        <h2 className='login-title'>SIGN IN</h2>
+      <Form
+        className='login-form login-form--shadowify'
+        onSubmit={submitHandler}
+      >
+        <h2 className='login-form__title'>SIGN IN</h2>
 
-        <FormGroup className='login-fields'>
+        <FormGroup className='login-form__fields'>
           <Form.Control
-            className='login-email pl-3'
+            className='login-form__form-control--shadowify pl-3 login-form__form-control'
             type='email'
             placeholder='Enter email'
             required
@@ -45,7 +48,7 @@ const LoginScreen = ({ history }) => {
           ></Form.Control>
 
           <Form.Control
-            className='login-password pl-3'
+            className='login-form__form-control--shadowify pl-3 login-form__form-control'
             type='password'
             placeholder='Enter password'
             required
@@ -54,13 +57,16 @@ const LoginScreen = ({ history }) => {
           ></Form.Control>
         </FormGroup>
 
-        <Button type='submit' variant='info' className='login-button '>
+        <Button type='submit' variant='info' className='login-form__btn'>
           Sign In
         </Button>
       </Form>
 
-      <div className='login-link'>
-        A New Leader ? <Link to={'/register'}>Register</Link>
+      <div className='login-screen__link-container'>
+        A New Leader ?{' '}
+        <Link to={'/register'} className='login-screen__link'>
+          Register
+        </Link>
       </div>
     </>
   );

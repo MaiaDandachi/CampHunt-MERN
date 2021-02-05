@@ -23,15 +23,19 @@ const HomeScreen = ({ location }) => {
 
   return (
     <>
-      <Jumbotron>
-        <h1>WELCOME TO CAMPHUNT</h1>
-        <h4>Find your next getaway</h4>
+      <Jumbotron className='home__jumbotron jumbotron'>
+        <h1 className='jumbotron__main-heading jumbotron__main-heading--shadowify'>
+          WELCOME TO CAMPHUNT
+        </h1>
+        <h4 className='jumbotron__sub-heading jumbotron__main-heading--shadowify'>
+          Find your next getaway
+        </h4>
 
         <Route render={({ history }) => <FilterBox history={history} />} />
       </Jumbotron>
-      <Container className='campground-results-heading'>
-        <h3>Available Campgrounds</h3>
-        <div className='hr-container'>
+      <Container className='home__camps-container container'>
+        <h3 className='container__title'>Available Campgrounds</h3>
+        <div className='container__line'>
           <hr />
         </div>
         {loading ? (

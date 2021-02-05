@@ -39,12 +39,15 @@ const RegisterScreen = ({ history }) => {
       {loading && <Loader />}
       {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
-      <Form className='register-form' onSubmit={submitHandler}>
-        <h2 className='title'>SIGN UP</h2>
+      <Form
+        className='register-form register-form--shadowify'
+        onSubmit={submitHandler}
+      >
+        <h2 className='register-form__title'>SIGN UP</h2>
 
-        <FormGroup className='register-fields'>
+        <FormGroup className='register-form__fields'>
           <Form.Control
-            className='register-name pl-3'
+            className='register-form__form-control--shadowify pl-3 register-form__form-control'
             type='text'
             placeholder='Enter name'
             required
@@ -53,7 +56,7 @@ const RegisterScreen = ({ history }) => {
           ></Form.Control>
 
           <Form.Control
-            className='register-email pl-3'
+            className='register-form__form-control--shadowify pl-3 register-form__form-control'
             type='email'
             placeholder='Enter email'
             required
@@ -62,7 +65,7 @@ const RegisterScreen = ({ history }) => {
           ></Form.Control>
 
           <Form.Control
-            className='register-password pl-3'
+            className='register-form__form-control--shadowify pl-3 register-form__form-control'
             type='password'
             placeholder='Enter password'
             required
@@ -71,7 +74,7 @@ const RegisterScreen = ({ history }) => {
           ></Form.Control>
 
           <Form.Control
-            className='register-password pl-3'
+            className='register-form__form-control--shadowify pl-3 register-form__form-control'
             type='password'
             placeholder='Confirm password'
             required
@@ -80,13 +83,16 @@ const RegisterScreen = ({ history }) => {
           ></Form.Control>
         </FormGroup>
 
-        <Button type='submit' variant='info' className='register-button '>
-          Sign In
+        <Button type='submit' variant='info' className='register-form__btn '>
+          Sign Up
         </Button>
       </Form>
 
-      <div className='register-link'>
-        Already A Leader ? <Link to={'/login'}>Login</Link>
+      <div className='register-screen__link-container'>
+        Already A Leader ?{' '}
+        <Link to={'/login'} className='register-screen__link'>
+          Login
+        </Link>
       </div>
     </>
   );

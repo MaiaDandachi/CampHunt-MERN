@@ -156,7 +156,12 @@ const AddCampScreen = ({ history }) => {
           <Button
             type='submit'
             variant='info'
-            style={{ width: '50%', textAlign: 'center', marginLeft: '25%' }}
+            style={{
+              width: '50%',
+              textAlign: 'center',
+              marginLeft: '25%',
+              borderRadius: '50px',
+            }}
           >
             Add
           </Button>
