@@ -50,7 +50,7 @@ const Header = () => {
                 </LinkContainer>
               )}
 
-              <LinkContainer to='/leaders' className='header__link'>
+              <LinkContainer to='/leaders' className='header__link--margin-bottom'>
                 <Nav.Link>Leaders</Nav.Link>
               </LinkContainer>
             </Nav>
