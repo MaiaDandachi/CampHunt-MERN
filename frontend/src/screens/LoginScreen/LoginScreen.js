@@ -6,10 +6,15 @@ import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { login } from '../../actions/userActions';
 import './Login.css';
+import { useForm } from '../../hooks/useForm';
 
 const LoginScreen = ({ history }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { inputs, handleInputChange } = useForm({
+    email: '',
+    password: '',
+  });
+
+  const [formErrors, setFormErrors] = useState({ email: '', password: '' });
 
   const dispatch = useDispatch();
 
@@ -24,7 +29,24 @@ const LoginScreen = ({ history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+
+    const formErrors = validateForm(inputs);
+    setFormErrors({ email: formErrors.email, password: formErrors.password });
+    if (Object.keys(formErrors).length) return;
+
+    dispatch(login(inputs.email, inputs.password));
+  };
+
+  const validateForm = (user) => {
+    const errors = {};
+
+    // Email error checking.
+    if (!/^\S+@\S+\.com$/.test(user.email)) errors.email = 'Invalid Email';
+    if (!user.email) errors.email = 'Email Required';
+
+    // Password error checking.
+    if (!user.password) errors.password = 'Password Required';
+    return errors;
   };
 
   return (
@@ -32,28 +54,39 @@ const LoginScreen = ({ history }) => {
       {loading && <Loader />}
       {error && <Message variant='danger'>{error}</Message>}
       <Form
+        noValidate
         className='login-form login-form--shadowify'
         onSubmit={submitHandler}
       >
         <h2 className='login-form__title'>SIGN IN</h2>
 
         <FormGroup className='login-form__fields'>
+          {formErrors.email && (
+            <div style={{ color: 'red', marginBottom: '10px' }}>
+              * {formErrors.email}
+            </div>
+          )}
           <Form.Control
             className='login-form__form-control--shadowify pl-3 login-form__form-control'
             type='email'
             placeholder='Enter email'
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name='email'
+            value={inputs.email}
+            onChange={handleInputChange}
           ></Form.Control>
 
+          {formErrors.password && (
+            <div style={{ color: 'red', marginBottom: '10px' }}>
+              * {formErrors.password}
+            </div>
+          )}
           <Form.Control
             className='login-form__form-control--shadowify pl-3 login-form__form-control'
             type='password'
             placeholder='Enter password'
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name='password'
+            value={inputs.password}
+            onChange={handleInputChange}
           ></Form.Control>
         </FormGroup>
 

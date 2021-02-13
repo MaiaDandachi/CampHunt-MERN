@@ -1,46 +1,49 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import { useForm } from '../../hooks/useForm';
 import './FilterBox.css';
 
 const FilterBox = ({ history }) => {
-  const [camp, setCamp] = useState('');
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
-  const [country, setCountry] = useState('');
-  const [city, setCity] = useState('');
+  const { inputs, handleInputChange, handleInputValue } = useForm({
+    camp: '',
+    minPrice: '',
+    maxPrice: '',
+    country: '',
+    city: '',
+  });
 
   const submitHandler = (e) => {
     e.preventDefault();
     let filterQuery = '?';
 
-    if (camp) {
-      filterQuery += `camp=${camp}`;
+    if (inputs.camp) {
+      filterQuery += `camp=${inputs.camp}`;
       filterQuery += `&`;
-      setCamp('');
+      handleInputValue('camp', '');
     }
-    if (minPrice) {
-      filterQuery += `minPrice=${minPrice}`;
+    if (inputs.minPrice) {
+      filterQuery += `minPrice=${inputs.minPrice}`;
       filterQuery += `&`;
-      setMinPrice('');
+      handleInputValue('minPrice', '');
     }
-    if (maxPrice) {
-      filterQuery += `maxPrice=${maxPrice}`;
+    if (inputs.maxPrice) {
+      filterQuery += `maxPrice=${inputs.maxPrice}`;
       filterQuery += `&`;
 
-      setMaxPrice('');
+      handleInputValue('maxPrice', '');
     }
-    if (country) {
-      filterQuery += `country=${country}`;
+    if (inputs.country) {
+      filterQuery += `country=${inputs.country}`;
       filterQuery += `&`;
 
-      setCountry('');
+      handleInputValue('country', '');
     }
-    if (city) {
-      filterQuery += `city=${city}`;
+    if (inputs.city) {
+      filterQuery += `city=${inputs.city}`;
       filterQuery += `&`;
 
-      setCity('');
+      handleInputValue('city', '');
     }
 
     if (filterQuery.length > 1) {
@@ -59,10 +62,10 @@ const FilterBox = ({ history }) => {
           <Form.Control
             className='filter-box__form-control'
             type='text'
-            name='campName'
+            name='camp'
             placeholder='Camp Name'
-            value={camp}
-            onChange={(e) => setCamp(e.target.value)}
+            value={inputs.camp}
+            onChange={handleInputChange}
           />
         </Form.Group>
 
@@ -75,9 +78,9 @@ const FilterBox = ({ history }) => {
             name='minPrice'
             min='1'
             step='0.01'
-            value={minPrice}
+            value={inputs.minPrice}
             placeholder='$ / Night'
-            onChange={(e) => setMinPrice(e.target.value)}
+            onChange={handleInputChange}
           />
         </Form.Group>
 
@@ -89,9 +92,9 @@ const FilterBox = ({ history }) => {
             name='maxPrice'
             min='1'
             step='0.01'
-            value={maxPrice}
+            value={inputs.maxPrice}
             placeholder='$ / Night'
-            onChange={(e) => setMaxPrice(e.target.value)}
+            onChange={handleInputChange}
           />
         </Form.Group>
       </Form.Row>
@@ -103,8 +106,8 @@ const FilterBox = ({ history }) => {
             className='form-control filter-box__form-control'
             name='country'
             defaultOptionLabel='Country'
-            value={country}
-            onChange={(value) => setCountry(value)}
+            value={inputs.country}
+            onChange={(value) => handleInputValue('country', value)}
           />
         </Form.Group>
 
@@ -114,9 +117,9 @@ const FilterBox = ({ history }) => {
             className='form-control filter-box__form-control'
             name='city'
             disableWhenEmpty={true}
-            country={country}
-            value={city}
-            onChange={(value) => setCity(value)}
+            country={inputs.country}
+            value={inputs.city}
+            onChange={(value) => handleInputValue('city', value)}
           />
         </Form.Group>
       </Form.Row>

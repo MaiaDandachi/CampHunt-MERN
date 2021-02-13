@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, ListGroup, Card, Button, Form } from 'react-bootstrap';
@@ -13,11 +13,14 @@ import {
 } from '../../actions/campActions';
 import { CAMP_CREATE_REVIEW_RESET } from '../../constants/campConstants';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useForm } from '../../hooks/useForm';
 
 const CampScreen = ({ match, history }) => {
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
-  const [name, setName] = useState('');
+  const { inputs, handleInputChange, handleInputValue } = useForm({
+    name: '',
+    comment: '',
+    rating: 0,
+  });
 
   const dispatch = useDispatch();
 
@@ -36,9 +39,10 @@ const CampScreen = ({ match, history }) => {
   useEffect(() => {
     if (successReview) {
       alert('Review Submitted');
-      setRating(0);
-      setName('');
-      setComment('');
+      handleInputValue('rating', 0);
+      handleInputValue('name', '');
+      handleInputValue('comment', '');
+
       dispatch({ type: CAMP_CREATE_REVIEW_RESET });
     }
 
@@ -47,15 +51,22 @@ const CampScreen = ({ match, history }) => {
     }
 
     dispatch(listCampDetails(match.params.id));
-  }, [dispatch, match.params.id, successReview, successDelete, history]);
+  }, [
+    dispatch,
+    match.params.id,
+    successReview,
+    successDelete,
+    history,
+    handleInputValue,
+  ]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
       createCampReview(match.params.id, {
-        name: name,
-        rating: rating,
-        comment: comment,
+        name: inputs.name,
+        rating: inputs.rating,
+        comment: inputs.comment,
       })
     );
   };
@@ -212,8 +223,9 @@ const CampScreen = ({ match, history }) => {
                           type='name'
                           placeholder='Enter Name'
                           required
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
+                          name='name'
+                          value={inputs.name}
+                          onChange={handleInputChange}
                         ></Form.Control>
                       </Form.Group>
 
@@ -221,8 +233,10 @@ const CampScreen = ({ match, history }) => {
                         <Form.Label>Rating</Form.Label>
                         <Form.Control
                           as='select'
-                          value={rating}
-                          onChange={(e) => setRating(e.target.value)}
+                          name='rating'
+                          required
+                          value={inputs.rating}
+                          onChange={handleInputChange}
                         >
                           <option value=''>Select ... </option>
                           <option value='1'>1 - Poor</option>
@@ -237,8 +251,10 @@ const CampScreen = ({ match, history }) => {
                         <Form.Control
                           as='textarea'
                           row='3'
-                          value={comment}
-                          onChange={(e) => setComment(e.target.value)}
+                          name='comment'
+                          value={inputs.comment}
+                          required
+                          onChange={handleInputChange}
                         ></Form.Control>
                       </Form.Group>
                       <Button

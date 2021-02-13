@@ -10,15 +10,26 @@ import Loader from '../../components/Loader';
 import FormContainer from '../../components/FormContainer';
 import { CAMP_UPDATE_RESET } from '../../constants/campConstants';
 import { listCampDetails, updateCamp } from '../../actions/campActions';
+import { useForm } from '../../hooks/useForm';
 
 const CampEditScreen = ({ match, history }) => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [country, setCountry] = useState('');
-  const [city, setCity] = useState('');
-  const [price, setPrice] = useState(0);
-  const [image, setImage] = useState('');
+  const { inputs, handleInputChange, handleInputValue } = useForm({
+    name: '',
+    description: '',
+    country: '',
+    city: '',
+    price: 0,
+    image: '',
+  });
+
   const [uploading, setUploading] = useState(false);
+
+  const [formErrors, setFormErrors] = useState({
+    name: '',
+    description: '',
+    price: '',
+    image: '',
+  });
 
   const dispatch = useDispatch();
 
@@ -42,26 +53,40 @@ const CampEditScreen = ({ match, history }) => {
     if (!camp.name) {
       dispatch(listCampDetails(match.params.id));
     } else {
-      setName(camp.name);
-      setPrice(camp.price);
-      setImage(camp.image);
-      setDescription(camp.description);
-      setCountry(camp.country);
-      setCity(camp.city);
+      handleInputValue('name', camp.name);
+      handleInputValue('price', camp.price);
+      handleInputValue('image', camp.image);
+      handleInputValue('description', camp.description);
+      handleInputValue('country', camp.country);
+      handleInputValue('city', camp.city);
     }
-  }, [dispatch, camp, match, successUpdate, history, userInfo]);
+  }, [
+    dispatch,
+    camp,
+    match,
+    successUpdate,
+    history,
+    userInfo,
+    handleInputValue,
+  ]);
 
   const submitHandler = (event) => {
     event.preventDefault();
+
+    const formErrors = validateForm(inputs);
+    setFormErrors({
+      name: formErrors.name,
+      description: formErrors.description,
+      price: formErrors.price,
+      image: formErrors.image,
+    });
+
+    if (Object.keys(formErrors).length) return;
+
     dispatch(
       updateCamp({
         _id: match.params.id,
-        name,
-        price,
-        image,
-        description,
-        country,
-        city,
+        ...inputs,
       })
     );
   };
@@ -78,12 +103,44 @@ const CampEditScreen = ({ match, history }) => {
         },
       };
       const { data } = await axios.post('/api/upload', formData, config);
-      setImage(data);
+
+      handleInputValue('image', data);
       setUploading(false);
     } catch (error) {
       console.error(error);
       setUploading(false);
     }
+  };
+
+  const validateForm = (camp) => {
+    const errors = {};
+
+    //name error check
+    if (!camp.name) {
+      errors.name = 'Name is required';
+    } else if (!/^\S.*?\S$/.test(camp.name)) {
+      errors.name = "Name can't have white spaces at the begining & end";
+    }
+
+    // description error check
+    if (!camp.description) {
+      errors.description = 'Description is required';
+    } else if (!/^\S.*?\S$/.test(camp.description)) {
+      errors.description =
+        "Description can't have white spaces at the begining";
+    }
+
+    // price error check
+    if (!camp.price) {
+      errors.price = 'Price is required';
+    }
+
+    // image error check
+    if (!camp.image) {
+      errors.image = 'Image is required';
+    }
+
+    return errors;
   };
 
   return (
@@ -96,37 +153,52 @@ const CampEditScreen = ({ match, history }) => {
         <h1>Edit Camp</h1>
         {loading && <Loader />}
         {error && <Message variant='danger'>{error}</Message>}
-        <Form onSubmit={submitHandler}>
+        <Form onSubmit={submitHandler} noValidate>
           <Form.Group controlId='name'>
             <Form.Label>Camp Name</Form.Label>
+            {formErrors.name && (
+              <div style={{ color: 'red', marginBottom: '10px' }}>
+                * {formErrors.name}
+              </div>
+            )}
             <Form.Control
               type='name'
               placeholder='Enter name'
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              name='name'
+              value={inputs.name}
+              onChange={handleInputChange}
             ></Form.Control>
           </Form.Group>
 
           <Form.Group controlId='description'>
             <Form.Label>Description</Form.Label>
+            {formErrors.description && (
+              <div style={{ color: 'red', marginBottom: '10px' }}>
+                * {formErrors.description}
+              </div>
+            )}
             <Form.Control
               type='text'
               placeholder='Enter description'
-              required
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              name='description'
+              value={inputs.description}
+              onChange={handleInputChange}
             ></Form.Control>
           </Form.Group>
 
           <Form.Group controlId='price'>
             <Form.Label>Price</Form.Label>
+            {formErrors.price && (
+              <div style={{ color: 'red', marginBottom: '10px' }}>
+                * {formErrors.price}
+              </div>
+            )}
             <Form.Control
               type='number'
               placeholder='Enter Price'
-              required
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              name='price'
+              value={inputs.price}
+              onChange={handleInputChange}
             ></Form.Control>
           </Form.Group>
 
@@ -135,8 +207,9 @@ const CampEditScreen = ({ match, history }) => {
             <CountryDropdown
               className='form-control'
               defaultOptionLabel='Country'
-              value={country}
-              onChange={(value) => setCountry(value)}
+              name='country'
+              value={inputs.country}
+              onChange={(value) => handleInputValue('country', value)}
             />
           </Form.Group>
 
@@ -145,19 +218,26 @@ const CampEditScreen = ({ match, history }) => {
             <RegionDropdown
               className='form-control'
               disableWhenEmpty={true}
-              country={country}
-              value={city}
-              onChange={(value) => setCity(value)}
+              name='city'
+              country={inputs.country}
+              value={inputs.city}
+              onChange={(value) => handleInputValue('city', value)}
             />
           </Form.Group>
 
           <Form.Group controlId='image'>
             <Form.Label>Image</Form.Label>
+            {formErrors.image && (
+              <div style={{ color: 'red', marginBottom: '10px' }}>
+                * {formErrors.image}
+              </div>
+            )}
             <Form.Control
               type='text'
               placeholder='Enter image url'
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
+              name='image'
+              value={inputs.image}
+              onChange={handleInputChange}
             ></Form.Control>
             <Form.File
               id='image-file'
