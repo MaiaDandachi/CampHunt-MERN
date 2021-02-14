@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 
 import Rating from '../Rating/Rating';
-import './Camp.css';
+import './Camp.scss';
 
 const Camp = ({ camp }) => {
   return (

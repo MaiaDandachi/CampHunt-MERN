@@ -1,0 +1,17 @@
+.filter-box {
+  &__form {
+    &-group {
+      color: white;
+    }
+
+    &-control {
+      border-radius: 50px;
+    }
+  }
+
+  &__btn {
+    width: 205px;
+    padding: 9px 25px;
+    border-radius: 50px;
+  }
+}

@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Lobster&display=swap');
+
+.header {
+  &__brand {
+    font-family: 'Lobster', cursive;
+    font-weight: lighter;
+    font-size: 2.5rem;
+  }
+
+  &__btn {
+    margin-left: 20px;
+    padding: 9px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-bottom: 2px;
+  }
+
+  &__link {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+    position: relative;
+
+    &:first-child {
+      margin-right: 15px;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      background-color: #0088a9;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+
+    &:hover::before {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+
+  &__dropdown {
+    margin-right: 15px;
+  }
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #edf0f1;
+
+  &:hover {
+    color: #edf0f1;
+  }
+
+  &:focus {
+    color: #edf0f1;
+  }
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 8px 0;
+}
+
+@media screen and (max-width: 991px) {
+  .header__brand {
+    font-size: 2rem;
+  }
+
+  .header__btn {
+    margin-left: -20px;
+  }
+
+  .header__link::before {
+    width: 20%;
+  }
+
+  .header__link--margin-bottom {
+    margin-bottom: 10px;
+  }
+}

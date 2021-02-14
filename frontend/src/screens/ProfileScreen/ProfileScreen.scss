@@ -1,0 +1,25 @@
+.profile-form {
+  display: flex;
+  flex-direction: column;
+
+  &__btn {
+    align-self: center;
+    width: 250px;
+    border-radius: 50px;
+    padding: 9px 25px;
+    border: none;
+  }
+}
+
+.profile-delete {
+  display: flex;
+  flex-direction: column;
+
+  &__btn {
+    align-self: center;
+    width: 250px;
+    border-radius: 50px;
+    padding: 9px 25px;
+    border: none;
+  }
+}

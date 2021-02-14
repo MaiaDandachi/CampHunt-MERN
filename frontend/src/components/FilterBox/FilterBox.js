@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import { useForm } from '../../hooks/useForm';
-import './FilterBox.css';
+import './FilterBox.scss';
 
 const FilterBox = ({ history }) => {
   const { inputs, handleInputChange, handleInputValue } = useForm({

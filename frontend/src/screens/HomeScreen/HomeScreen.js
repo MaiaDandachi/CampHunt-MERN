@@ -7,7 +7,7 @@ import FilterBox from '../../components/FilterBox/FilterBox';
 import Camp from '../../components/Camp/Camp';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import './HomeScreen.css';
+import './HomeScreen.scss';
 
 import { listCamps } from '../../actions/campActions';
 

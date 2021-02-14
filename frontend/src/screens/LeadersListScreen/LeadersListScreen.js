@@ -7,7 +7,7 @@ import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { listUsers } from '../../actions/userActions';
 import { listCamps } from '../../actions/campActions';
-import './LeadersListScreen.css';
+import './LeadersListScreen.scss';
 
 const LeadersListScreen = () => {
   const dispatch = useDispatch();

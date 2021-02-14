@@ -3,7 +3,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Container, Nav, Button, NavDropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-import './Header.css';
+import './Header.scss';
 import { logout } from '../../actions/userActions';
 
 const Header = () => {
@@ -50,7 +50,10 @@ const Header = () => {
                 </LinkContainer>
               )}
 
-              <LinkContainer to='/leaders' className='header__link header__link--margin-bottom'>
+              <LinkContainer
+                to='/leaders'
+                className='header__link header__link--margin-bottom'
+              >
                 <Nav.Link>Leaders</Nav.Link>
               </LinkContainer>
             </Nav>

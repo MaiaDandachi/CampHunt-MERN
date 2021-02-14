@@ -6,7 +6,7 @@ import { Form, Button, FormGroup } from 'react-bootstrap';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { register } from '../../actions/userActions';
-import './RegisterScreen.css';
+import './RegisterScreen.scss';
 import { useForm } from '../../hooks/useForm';
 
 const RegisterScreen = ({ history }) => {
