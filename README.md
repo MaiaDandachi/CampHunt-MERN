@@ -1,7 +1,7 @@
 # CampHunt Web Application
 > A web application for campLeaders to share campgrounds and campers to look for camps to attend, Built with MERN stack & Redux.
 
-Aplication Demo: https://camp-hunt.herokuapp.com/
+Application Demo: https://camp-hunt.herokuapp.com/
 
 ## Contributors 🤝
  - [*Aly Assem*](https://github.com/AlyAssem)  
